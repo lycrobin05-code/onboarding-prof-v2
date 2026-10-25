@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Préparation professeur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --night: #0B1A18;
+    --surface: #0F2320;
+    --primary: #1B4A47;
+    --accent: #C9A97E;
+    --accent-200: #E4CFA8;
+    --cream: #FAF6EE;
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    background: var(--night);
+    color: rgba(250, 246, 238, .85);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(201, 169, 126, .05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201, 169, 126, .05) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+
+  header { border-bottom: 1px solid rgba(201, 169, 126, .1); padding: 16px 0; }
+  header img { height: 44px; width: auto; display: block; margin: 0 auto; }
+
+  .hero { padding: 56px 0 48px; text-align: center; }
+  .kicker { color: var(--accent); font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+  h1 { color: var(--cream); font-size: 1.4rem; font-weight: 700; text-transform: uppercase; line-height: 1.25; margin: 12px 0 16px; }
+  .hero p { max-width: 560px; margin: 0 auto; }
+
+  .order-warn {
+    max-width: 560px; margin: 20px auto 0; padding: 14px 18px; text-align: left;
+    border: 1px solid var(--accent); border-left-width: 4px; border-radius: 12px;
+    background: rgba(201, 169, 126, .1); color: var(--cream); font-size: 14px;
+  }
+  .order-warn strong { color: var(--accent-200); text-transform: uppercase; letter-spacing: .04em; }
+  .help-wa { max-width: 560px; margin: 14px auto 0; font-size: 14px; color: rgba(250, 246, 238, .8); }
+  .help-wa .link { white-space: nowrap; }
+  .order-note { text-align: center; color: var(--accent-200); font-size: 14px; font-weight: 600; margin: -12px 0 20px; }
+  .progress { max-width: 420px; margin: 32px auto 0; }
+  .progress-bar { height: 6px; background: rgba(201, 169, 126, .15); border-radius: 999px; overflow: hidden; }
+  .progress-fill { height: 100%; width: 0; background: var(--accent); transition: width .2s; }
+  .progress-label { font-size: 13px; color: rgba(250, 246, 238, .7); margin-top: 8px; }
+
+  .plan { background: var(--surface); padding: 56px 0; }
+  h2 { color: var(--accent-200); font-size: 1.35rem; font-weight: 700; text-align: center; margin-bottom: 24px; }
+  .plan ol { list-style: none; display: grid; gap: 12px; }
+  .mail-copy { color: var(--cream); font-weight: 700; font-size: 1.05rem; word-break: break-all; margin-bottom: 4px; }
+  .btn-mail { max-width: 360px; margin: 12px auto 0; }
+  .plan .pre {
+    display: flex; align-items: center; gap: 16px; padding: 16px 20px; color: var(--cream);
+    border: 1px solid rgba(201, 169, 126, .2); border-radius: var(--radius); opacity: .85;
+  }
+  .plan a {
+    display: flex; align-items: center; gap: 16px;
+    padding: 16px 20px; border: 1px solid rgba(201, 169, 126, .2); border-radius: var(--radius);
+    color: var(--cream); text-decoration: none; transition: border-color .15s, background .15s;
+  }
+  .plan a:hover { border-color: rgba(201, 169, 126, .5); background: rgba(201, 169, 126, .04); }
+  .num {
+    flex: none; width: 36px; height: 36px; border-radius: 999px;
+    display: grid; place-items: center;
+    border: 1px solid var(--accent); color: var(--accent); font-weight: 700; font-size: 14px;
+  }
+  .plan .done .num { background: var(--accent); color: var(--night); }
+  .plan .label { font-weight: 600; }
+  .plan .sub { display: block; font-size: 13px; color: rgba(250, 246, 238, .6); font-weight: 400; }
+
+  .step { padding: 64px 0; }
+  .step:nth-of-type(even) { background: var(--surface); }
+  .step-head { text-align: center; margin-bottom: 28px; }
+  .step-tag {
+    display: inline-block; color: var(--night); background: var(--accent);
+    font-size: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: var(--radius);
+  }
+  h3 { color: var(--cream); font-size: 1.1rem; font-weight: 600; margin-top: 14px; }
+  .step-intro { text-align: center; max-width: 560px; margin: 0 auto 28px; }
+
+  .video {
+    position: relative; width: 100%; aspect-ratio: 1920 / 1246;
+    border-radius: var(--radius); overflow: hidden;
+    border: 1px solid rgba(201, 169, 126, .2); background: #000;
+  }
+  .video iframe, .video video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .video-note { font-size: 13px; color: rgba(250, 246, 238, .5); text-align: center; margin-top: 10px; }
+
+  .substep {
+    margin-top: 32px; padding: 28px 20px; text-align: center;
+    border: 1px solid rgba(201, 169, 126, .2); border-radius: var(--radius);
+  }
+  .substep-title { color: var(--cream); font-weight: 600; font-size: 1.05rem; margin-bottom: 20px; }
+  .btn-wa {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 14px 24px; border-radius: var(--radius);
+    background: linear-gradient(180deg, var(--accent-200), var(--accent)); color: var(--night);
+    font-weight: 800; font-size: 15px; text-transform: uppercase; letter-spacing: .03em; text-decoration: none;
+    transition: filter .15s;
+  }
+  .btn-wa:hover { filter: brightness(1.06); }
+  .btn-wa svg { width: 22px; height: 22px; fill: currentColor; flex: none; }
+  .substep-note { font-size: 13px; color: rgba(250, 246, 238, .6); margin-top: 14px; }
+
+  .howto { list-style: none; display: grid; gap: 12px; max-width: 600px; margin: 0 auto 28px; }
+  .howto li {
+    display: flex; align-items: flex-start; gap: 16px; padding: 16px 20px;
+    border: 1px solid rgba(201, 169, 126, .2); border-radius: var(--radius);
+  }
+  .howto strong { color: var(--cream); font-weight: 600; }
+  .howto-title { color: var(--cream); font-weight: 600; margin-bottom: 4px; }
+  .howto li div p + p { margin-top: 8px; }
+  .howto p { padding-top: 0; }
+  .howto .num { margin-top: 2px; }
+  .warn { font-size: 14px; color: var(--accent-200); border-left: 2px solid var(--accent); padding-left: 12px; }
+  .prereq { max-width: 600px; margin: 0 auto 16px; padding: 14px 20px; border-radius: var(--radius); background: rgba(201, 169, 126, .08); font-size: 14px; }
+  .prereq strong, .help-note strong { color: var(--cream); }
+  .help-note { max-width: 600px; margin: 0 auto 28px; font-size: 14px; color: rgba(250, 246, 238, .7); text-align: center; }
+  .center { text-align: center; }
+  .cta-under-video { margin-top: 24px; }
+  .btn-big { padding: 18px 32px; font-size: 16px; width: 100%; max-width: 420px; }
+  .btn-outline {
+    display: inline-block; padding: 14px 24px; border: 1px solid var(--accent); border-radius: var(--radius);
+    color: var(--cream); font-weight: 800; font-size: 15px; text-transform: uppercase; letter-spacing: .03em;
+    text-decoration: none; transition: background .15s;
+  }
+  .btn-outline.is-soon { opacity: .55; cursor: default; }
+  .btn-outline:hover { background: rgba(201, 169, 126, .08); }
+
+  figure { margin: 12px 0 0; }
+  figure img { display: block; width: auto; max-width: 100%; border-radius: 12px; border: 1px solid rgba(201, 169, 126, .3); background: #fff; }
+  figcaption { font-size: 13px; color: rgba(250, 246, 238, .6); margin-top: 6px; }
+  h4.part { color: var(--accent-200); font-size: 1rem; font-weight: 700; margin: 28px 0 10px; text-align: center; }
+  .todo {
+    border: 1px dashed rgba(201, 169, 126, .35); border-radius: var(--radius);
+    padding: 40px 20px; text-align: center; color: rgba(250, 246, 238, .5); font-size: 14px;
+  }
+
+  .check {
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    margin: 28px auto 0; padding: 14px 22px; max-width: 360px;
+    border: 1px solid var(--accent); border-radius: var(--radius);
+    background: transparent; color: var(--cream);
+    font: 800 15px 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: .03em;
+    cursor: pointer; transition: background .15s, color .15s;
+  }
+  .check svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .check .tick { opacity: 0; }
+  .check.is-done { cursor: default; }
+  .check[aria-pressed="true"], .check.is-done { background: linear-gradient(180deg, var(--accent-200), var(--accent)); color: var(--night); border-color: var(--accent); }
+  .check[aria-pressed="true"] .tick, .check.is-done .tick { opacity: 1; }
+
+  .acces { max-width: 480px; margin: 0 auto 32px; display: grid; gap: 6px; }
+  .acces label { color: var(--cream); font-weight: 600; font-size: 14px; margin-top: 12px; }
+  .acces input {
+    width: 100%; padding: 14px 16px; border-radius: 12px; font: 16px 'Montserrat', sans-serif;
+    border: 1px solid rgba(201, 169, 126, .35); background: rgba(0, 0, 0, .25); color: var(--cream);
+  }
+  .acces input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .acces .btn-copy { margin-top: 20px; }
+  .acces .btn-copy:disabled { opacity: .6; cursor: wait; }
+  .form-msg { min-height: 1.5em; margin-top: 10px; font-size: 14px; text-align: center; color: var(--accent-200); }
+  .form-msg.is-error { color: #F0A3A3; }
+  .form-msg.is-ok { color: #9FD6B5; }
+  .link { color: var(--accent-200); font-weight: 600; }
+  .prompt-box { margin-top: 12px; }
+  .prompt-box pre {
+    max-height: 280px; overflow: auto; padding: 14px 16px; white-space: pre-wrap; word-break: break-word;
+    background: rgba(0, 0, 0, .25); border: 1px solid rgba(201, 169, 126, .2); border-radius: 12px;
+    font: 12.5px/1.55 ui-monospace, SFMono-Regular, Menlo, monospace; color: rgba(250, 246, 238, .85);
+  }
+  .btn-copy {
+    display: block; width: 100%; margin-top: 10px; padding: 14px 20px; border: 0; border-radius: var(--radius);
+    background: linear-gradient(180deg, var(--accent-200), var(--accent)); color: var(--night);
+    font: 800 15px 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: .03em; cursor: pointer;
+  }
+
+  footer { padding: 40px 0; text-align: center; font-size: 13px; color: rgba(250, 246, 238, .5); border-top: 1px solid rgba(201, 169, 126, .1); }
+
+  @media (min-width: 768px) {
+    body { font-size: 16px; }
+    h1 { font-size: 2.3rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.25rem; }
+    .hero { padding: 96px 0 72px; }
+    .step, .plan { padding: 96px 0; }
+    header img { height: 52px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="bg-grid">
+  <div class="wrap"><img src="logo.png" alt="À la lumière du Coran"></div>
+</header>
+
+<section class="hero bg-grid">
+  <div class="wrap">
+    <p class="kicker">Préparation professeur</p>
+    <h1>Bienvenue dans l'équipe</h1>
+    <p>Cette page te prépare à donner tes premiers cours. Suis les étapes dans l'ordre et coche chacune quand elle est terminée.</p>
+    <p class="order-warn"><strong>Attention :</strong> toutes les étapes doivent être faites <strong>dans l'ordre</strong>, de la 1 à la 9. Faites dans le désordre, elles ne fonctionnent pas (chaque étape a besoin de la précédente). Et toutes les étapes se font <strong>sur un ordinateur</strong>, pas sur le téléphone.</p>
+    <p class="help-wa">Une question, tu bloques quelque part, tu n'arrives pas à faire quelque chose ? Écris à Robin sur WhatsApp : <a class="link" href="https://wa.me/33780505214?text=Salam%20Robin%2C%20je%20bloque%20sur%20la%20page%20de%20pr%C3%A9paration%20%C3%A0%20l%27%C3%A9tape%20" target="_blank" rel="noopener">+33 7 80 50 52 14</a>. Il te répond vite.</p>
+    <div class="progress">
+      <div class="progress-bar"><div class="progress-fill" id="fill"></div></div>
+      <p class="progress-label" id="progress-label">Recrutement validé. Tu es à l'étape 1 sur 9.</p>
+    </div>
+  </div>
+</section>
+
+<section class="plan">
+  <div class="wrap">
+    <h2>Comment ça se déroule</h2>
+    <p class="order-note">Dans l'ordre, une étape après l'autre, sur un ordinateur. Pas de saut d'étape.</p>
+    <ol>
+      <li class="done"><span class="pre"><span class="num">✓</span><span class="label">Recrutement validé<span class="sub">Tu fais partie de l'équipe de professeurs</span></span></span></li>
+      <li data-step="1"><a href="#etape-1"><span class="num">1</span><span class="label">Étape 1<span class="sub">Organise ton quotidien avec Google Agenda</span></span></a></li>
+      <li data-step="2"><a href="#etape-2"><span class="num">2</span><span class="label">Étape 2<span class="sub">Bloque tes horaires de prière dans ton Google Agenda</span></span></a></li>
+      <li data-step="3"><a href="#etape-3"><span class="num">3</span><span class="label">Étape 3<span class="sub">Fais tes cours en visio avec Google Meet</span></span></a></li>
+      <li data-step="4"><a href="#etape-4"><span class="num">4</span><span class="label">Étape 4<span class="sub">Accède à la plateforme de cours (le programme que suivent tes élèves)</span></span></a></li>
+      <li data-step="5"><a href="#etape-5"><span class="num">5</span><span class="label">Étape 5<span class="sub">Crée ton calendrier de réservation de cours</span></span></a></li>
+      <li data-step="6"><a href="#etape-6"><span class="num">6</span><span class="label">Étape 6<span class="sub">Crée ton compte Fathom (enregistrement des cours)</span></span></a></li>
+      <li data-step="7"><a href="#etape-7"><span class="num">7</span><span class="label">Étape 7<span class="sub">Ouvre ton Espace prof (suivi de tes élèves)</span></span></a></li>
+      <li data-step="8"><a href="#etape-8"><span class="num">8</span><span class="label">Étape 8<span class="sub">Envoie ta facture chaque fin de mois</span></span></a></li>
+      <li data-step="9"><a href="#etape-9"><span class="num">9</span><span class="label">Étape 9<span class="sub">Le tuto en images, pas à pas (agenda, Fathom, ton espace)</span></span></a></li>
+    </ol>
+  </div>
+</section>
+
+<section class="step bg-grid" id="etape-1">
+  <div class="wrap">
+    <div class="step-head">
+      <span class="step-tag">Étape 1</span>
+      <h3>Comment organiser ton quotidien avec Google Agenda :</h3>
+    </div>
+    <div class="video">
+      <video controls preload="metadata" playsinline poster="video/google-agenda.jpg">
+        <source src="video/google-agenda.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="substep">
+      <p class="substep-title">Adresse mail de Thomas à ajouter à ton calendrier</p>
+      <p class="mail-copy" id="mail-thomas">thomas.workspace2@gmail.com</p>
+      <button class="btn-copy btn-mail" type="button" data-copy="mail-thomas" data-done="Adresse copiée ✓">Copier l'adresse</button>
+    </div>
+    <button class="check" type="button" data-step="1" aria-pressed="false">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path class="tick" d="m8 12 3 3 5-6"/></svg>
+      Étape 1 terminée
+    </button>
+  </div>
+</section>
+
+<section class="step" id="etape-2">
+  <div class="wrap">
+    <div class="step-head">
+      <span class="step-tag">Étape 2</span>
+      <h3>Comment bloquer ses horaires de prière dans son Google Agenda :</h3>
+    </div>
+    <div class="video">
+      <video controls preload="metadata" playsinline poster="video/horaires-priere.jpg">
+        <source src="video/horaires-priere.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="substep">
+      <p class="substep-title">Le lien pour bloquer tes prières dans ton agenda</p>
+      <div class="center"><a class="btn-outline" href="https://horaires-priere.vercel.app" target="_blank" rel="noopener">👉 Clique ici pour bloquer tes horaires de prière</a></div>
+      <p class="help-note">Le lien s'ouvre dans un nouvel onglet. Fais-le depuis un ordinateur : le partage de l'agenda ne se fait pas depuis le téléphone.</p>
+    </div>
+    <button class="check" type="button" data-step="2" aria-pressed="false">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path class="tick" d="m8 12 3 3 5-6"/></svg>
+      Étape 2 terminée
+    </button>
+  </div>
+</section>
+
+<section class="step" id="etape-3">
+  <div class="wrap">
+    <div class="step-head">
+      <span class="step-tag">Étape 3</span>
+      <h3>Comment effectuer tes cours en visio :</h3>
+    </div>
+    <div class="video">
+      <video controls preload="metadata" playsinline poster="video/google-meet.jpg">
+        <source src="video/google-meet.mp4" type="video/mp4">
+      </video>
+    </div>
+    <button class="check" type="button" data-step="3" aria-pressed="false">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path class="tick" d="m8 12 3 3 5-6"/></svg>
+      Étape 3 terminée
+    </button>
+  </div>
+</section>
+
+<section class="step" id="etape-4">
+  <div class="wrap">
+    <div class="step-head">
+      <span class="step-tag">Étape 4</span>
+      <h3>Accède à la plateforme de cours « À la lumière du Coran » :</h3>
+    </div>
+    <p class="step-intro">C'est la plateforme où tes élèves suivent le programme complet (vidéos, modules, exercices). Tu dois la connaître pour accompagner chaque élève au bon endroit du programme. Entre ton adresse email : ton accès est créé automatiquement.</p>
+    <form class="acces" id="acces-form" novalidate>
+      <label for="acces-prenom">Ton prénom</label>
+      <input id="acces-prenom" name="prenom" type="text" autocomplete="given-name" required>
+      <label for="acces-email">Ton adresse email</label>
+      <input id="acces-email" name="email" type="email" autocomplete="email" inputmode="email" autocapitalize="off" required>
+      <label for="acces-email2">Confirme ton adresse email (pour être sûr qu'il n'y a pas de faute de frappe)</label>
+      <input id="acces-email2" name="email2" type="email" inputmode="email" autocapitalize="off" required>
+      <button class="btn-copy" id="acces-submit" type="submit">Recevoir mon accès</button>
+      <p class="form-msg" id="acces-msg" aria-live="polite"></p>
+    </form>
+    <ol class="howto">
+      <li><span class="num">1</span><div>
+        <p class="howto-title">Ouvre l'email reçu</p>
+        <p>Dans la minute, tu reçois un email de <strong>contact@a-la-lumiere-du-coran.com</strong>, sujet <strong>« Important : Votre accès à la formation »</strong>. S'il n'est pas dans ta boîte de réception, regarde dans <strong>Spam</strong>, <strong>Promotions</strong> ou <strong>Notifications</strong>.</p>
+      </div></li>
+      <li><span class="num">2</span><div>
+        <p class="howto-title">Clique sur « Cliquez ici pour vous connecter », puis crée ton mot de passe</p>
+        <p>Sur la page de connexion, clique sur <strong>« Mot de passe oublié ? »</strong>, entre ton email, et suis l'email reçu pour choisir ton mot de passe. Note-le quelque part : c'est avec ton email et ce mot de passe que tu te connectes à chaque fois.</p>
+      </div></li>
+      <li><span class="num">3</span><div>
+        <p class="howto-title">Enregistre l'adresse de la plateforme</p>
+        <p>La plateforme est ici : <a class="link" href="https://www.a-la-lumiere-du-coran.com/school/course/arabe" target="_blank" rel="noopener">www.a-la-lumiere-du-coran.com/school/course/arabe</a>. Mets-la dans tes favoris. Parcours le programme une première fois pour savoir ce que tes élèves voient.</p>
+      </div></li>
+    </ol>
+    <div class="substep">
+      <p class="substep-title">Étape 4.1. Pas d'email après 10 minutes ? Écris à Robin.</p>
+      <a class="btn-wa" href="https://wa.me/33780505214?text=Salam%20Robin%2C%20je%20n%27ai%20pas%20re%C3%A7u%20mon%20acc%C3%A8s%20%C3%A0%20la%20plateforme%20de%20cours.%20Mon%20email%20%3A%20" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.03c-.24.68-1.42 1.3-1.95 1.35-.5.05-.97.23-3.27-.68-2.77-1.09-4.52-3.92-4.66-4.1-.13-.18-1.11-1.48-1.11-2.82 0-1.34.7-2 .95-2.27.25-.27.54-.34.72-.34h.52c.17 0 .39-.06.61.47.24.56.79 1.92.86 2.06.07.14.11.3.02.48-.09.18-.14.3-.27.46-.14.16-.29.35-.41.47-.14.14-.28.29-.12.56.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.2 1.36.27.14.43.11.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.23.61-.14.25.09 1.59.75 1.86.89.27.14.45.2.52.32.07.11.07.66-.17 1.32Z"/></svg>
+        Écrire à Robin sur WhatsApp
+      </a>
+    </div>
+    <button class="check" type="button" data-step="4" aria-pressed="false">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path class="tick" d="m8 12 3 3 5-6"/></svg>
+      Étape 4 terminée
+    </button>
+  </div>
+</section>
+
+<section class="step" id="etape-5">
+  <div class="wrap">
+    <div class="step-head">
+      <span class="step-tag">Étape 5</span>
+      <h3>Crée ton calendrier de réservation de cours :</h3>
+      <p class="step-intro">Crée ton Calendly avec le compte Google de l'agenda où tu mets tes cours, et choisis <strong>Google Meet</strong> comme lieu. Les cours fixes (par exemple tous les mercredis à 18 h), tu les mets directement dans ton Google Agenda, avec l'élève en invité et un lien Meet.</p>
+    </div>
+    <div class="video">
+      <iframe src="https://www.tella.tv/video/vid_cmvdwyygw006902l80ldm6g60/embed" title="Créer et configurer son compte Calendly" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="center cta-under-video"><a class="btn-wa btn-big" href="https://calendly.com/signup" target="_blank" rel="noopener">Créer mon compte Calendly</a></div>
+    <div class="substep">
+      <p class="substep-title">Étape 5.1. Copie le lien de ton événement et envoie-le à Robin sur WhatsApp.</p>
+      <a class="btn-wa" href="https://wa.me/33780505214?text=Voici%20le%20lien%20de%20mon%20calendrier%20Calendly%20%3A%20COLLER%20LE%20LIEN" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.03c-.24.68-1.42 1.3-1.95 1.35-.5.05-.97.23-3.27-.68-2.77-1.09-4.52-3.92-4.66-4.1-.13-.18-1.11-1.48-1.11-2.82 0-1.34.7-2 .95-2.27.25-.27.54-.34.72-.34h.52c.17 0 .39-.06.61.47.24.56.79 1.92.86 2.06.07.14.11.3.02.48-.09.18-.14.3-.27.46-.14.16-.29.35-.41.47-.14.14-.28.29-.12.56.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.2 1.36.27.14.43.11.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.23.61-.14.25.09 1.59.75 1.86.89.27.14.45.2.52.32.07.11.07.66-.17 1.32Z"/></svg>
+        Envoyer mon lien sur WhatsApp
+      </a>
+      <p class="substep-note">Le message s'écrit tout seul. Remplace « COLLER LE LIEN » par le lien de ton événement Calendly, puis envoie.</p>
+    </div>
+    <button class="check" type="button" data-step="5" aria-pressed="false">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path class="tick" d="m8 12 3 3 5-6"/></svg>
+      Étape 5 terminée
+    </button>
+  </div>
+</section>
+
+<section class="step bg-grid" id="etape-6">
+  <div class="wrap">
+    <div class="step-head">
+      <span class="step-tag">Étape 6</span>
+      <h3>Crée ton compte Fathom (enregistrement des cours) :</h3>
+    </div>
+    <div class="prereq">
+      <p><strong>Avant de commencer :</strong> un ordinateur Mac ou Windows et le navigateur Google Chrome. Fathom ne fonctionne pas sur téléphone, tablette, Chromebook ni Linux.</p>
+    </div>
+    <ol class="howto">
+      <li><span class="num">1</span><div>
+        <p class="howto-title">Crée un rendez-vous test dans Google Agenda</p>
+        <p>Avec le même compte Google que ton Calendly, crée un événement demain et clique sur « Ajouter une visioconférence Google Meet ».</p>
+        <p class="warn">Important : avec une adresse Gmail, Fathom exige au moins 1 rendez-vous Google Meet dans les 7 prochains jours pour valider l'inscription. Sans ce rendez-vous, l'inscription est bloquée et l'adresse ne peut plus être utilisée.</p>
+      </div></li>
+      <li><span class="num">2</span><div>
+        <p class="howto-title">Inscris-toi sur Fathom</p>
+        <p>Clique sur « Créer mon compte Fathom » plus bas, choisis <strong>Continuer avec Google</strong> avec le même compte que ton Calendly, puis accepte l'accès à ton agenda. C'est grâce à l'agenda que Fathom rejoint tes cours tout seul.</p>
+      </div></li>
+      <li><span class="num">3</span><div>
+        <p class="howto-title">Installe l'application Fathom sur ton ordinateur</p>
+        <p>Télécharge l'application (Mac ou Windows) proposée par Fathom, ouvre-la et connecte-toi. Laisse-la ouverte pendant tes cours.</p>
+      </div></li>
+      <li><span class="num">4</span><div>
+        <p class="howto-title">Installe l'extension Chrome</p>
+        <p>Dans Fathom, va dans <strong>Settings › Fathom Apps › Chrome Extension</strong> et clique sur <strong>Install</strong>. C'est elle qui fait fonctionner Fathom dans Google Meet.</p>
+      </div></li>
+      <li><span class="num">5</span><div>
+        <p class="howto-title">Règle Fathom (page Settings)</p>
+        <p>Premier menu : <strong>All Meetings</strong>. Tous tes cours sont enregistrés automatiquement.</p>
+        <p>Deuxième menu : <strong>Summary &amp; recording</strong>. Ton élève reçoit sa rediffusion par email après chaque cours, sans rien faire de ton côté.</p>
+        <p><strong>Default Meeting Summary Template : Enhanced</strong>. Le résumé du cours sera pédagogique, pas commercial.</p>
+        <p>Rubrique Video Conferencing : vérifie que <strong>Google Meet</strong> est connecté.</p>
+      </div></li>
+      <li><span class="num">6</span><div>
+        <p class="howto-title">Fais le test</p>
+        <p>Rejoins ton rendez-vous test sur Google Meet depuis ton ordinateur, et aussi depuis ton téléphone (ou une fenêtre de navigation privée) pour qu'il y ait 2 participants. « Fathom Notetaker » demande à entrer : accepte-le. <strong>Parle pendant 5 minutes</strong> (Fathom ne traite pas les réunions trop courtes), raccroche, et vérifie que l'enregistrement apparaît dans Fathom. Tu peux ensuite supprimer ce rendez-vous de ton agenda.</p>
+      </div></li>
+    </ol>
+    <p class="help-note">Si Fathom ne rejoint pas un cours : ouvre l'application Fathom, clique sur <strong>Add to Meeting</strong> et colle le lien Google Meet. Fathom entre tout de suite.</p>
+    <div class="center"><a class="btn-outline" href="https://www.fathom.ai/" target="_blank" rel="noopener">Créer mon compte Fathom</a></div>
+    <div class="substep">
+      <p class="substep-title">Étape 6.1. Préviens Robin sur WhatsApp que ton Fathom est prêt.</p>
+      <a class="btn-wa" href="https://wa.me/33780505214?text=Mon%20compte%20Fathom%20est%20pr%C3%AAt%2C%20l%27enregistrement%20automatique%20est%20activ%C3%A9." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.03c-.24.68-1.42 1.3-1.95 1.35-.5.05-.97.23-3.27-.68-2.77-1.09-4.52-3.92-4.66-4.1-.13-.18-1.11-1.48-1.11-2.82 0-1.34.7-2 .95-2.27.25-.27.54-.34.72-.34h.52c.17 0 .39-.06.61.47.24.56.79 1.92.86 2.06.07.14.11.3.02.48-.09.18-.14.3-.27.46-.14.16-.29.35-.41.47-.14.14-.28.29-.12.56.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.2 1.36.27.14.43.11.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.23.61-.14.25.09 1.59.75 1.86.89.27.14.45.2.52.32.07.11.07.66-.17 1.32Z"/></svg>
+        Prévenir Robin sur WhatsApp
+      </a>
+      <p class="substep-note">Le message s'écrit tout seul. Tu n'as plus qu'à l'envoyer.</p>
+    </div>
+    <button class="check" type="button" data-step="6" aria-pressed="false">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path class="tick" d="m8 12 3 3 5-6"/></svg>
+      Étape 6 terminée
+    </button>
+  </div>
+</section>
+
+<section class="step" id="etape-7">
+  <div class="wrap">
+    <div class="step-head">
+      <span class="step-tag">Étape 7</span>
+      <h3>Ouvre ton Espace prof (suivi de tes élèves) :</h3>
+    </div>
+    <div class="video">
+      <video controls preload="metadata" playsinline poster="video/espace-prof.jpg">
+        <source src="video/espace-prof.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="substep">
+      <p class="substep-title">Étape 7.1. Reçois le lien de ton Espace prof par e-mail.</p>
+      <p>Clique sur le bouton, puis tape 2 fois l'adresse e-mail que tu as donnée à l'institut. Ton lien arrive tout de suite par e-mail, de thomas.workspace2@gmail.com, avec le sujet « Ton Espace prof ». Ouvre-le sur ton ordinateur, puis mets la page en favori : Ctrl + D.</p>
+      <div class="center" style="margin-top:16px"><a class="btn-outline" href="https://espace-prof-rho.vercel.app/lien" target="_blank" rel="noopener">Recevoir mon lien</a></div>
+    </div>
+    <div class="substep">
+      <p class="substep-title">Étape 7.2. Dans ton Espace prof, onglet Réglages, fais les branchements comme dans la vidéo.</p>
+    </div>
+    <div class="substep">
+      <p class="substep-title">Pas d'e-mail après 10 minutes, même dans les Spams ? Écris à Robin.</p>
+      <a class="btn-wa" href="https://wa.me/33780505214?text=Salam%20Robin%2C%20je%20n%27ai%20pas%20re%C3%A7u%20mon%20lien%20Espace%20prof." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.03c-.24.68-1.42 1.3-1.95 1.35-.5.05-.97.23-3.27-.68-2.77-1.09-4.52-3.92-4.66-4.1-.13-.18-1.11-1.48-1.11-2.82 0-1.34.7-2 .95-2.27.25-.27.54-.34.72-.34h.52c.17 0 .39-.06.61.47.24.56.79 1.92.86 2.06.07.14.11.3.02.48-.09.18-.14.3-.27.46-.14.16-.29.35-.41.47-.14.14-.28.29-.12.56.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.2 1.36.27.14.43.11.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.23.61-.14.25.09 1.59.75 1.86.89.27.14.45.2.52.32.07.11.07.66-.17 1.32Z"/></svg>
+        Écrire à Robin sur WhatsApp
+      </a>
+    </div>
+    <button class="check" type="button" data-step="7" aria-pressed="false">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path class="tick" d="m8 12 3 3 5-6"/></svg>
+      Étape 7 terminée
+    </button>
+  </div>
+</section>
+
+<section class="step bg-grid" id="etape-8">
+  <div class="wrap">
+    <div class="step-head">
+      <span class="step-tag">Étape 8</span>
+      <h3>Comment envoyer ta facture chaque fin de mois pour être payé :</h3>
+    </div>
+    <div class="video">
+      <video src="video/facture-chatgpt.mp4" poster="video/facture-chatgpt.jpg" controls playsinline preload="none" title="Comment créer sa facture avec ChatGPT"></video>
+    </div>
+    <p class="video-note">Regarde la vidéo (4 min 35), puis suis les étapes ci-dessous.</p>
+    <div style="height:28px"></div>
+    <ol class="howto">
+      <li><span class="num">1</span><div>
+        <p class="howto-title">Copie le texte de la facture</p>
+        <p>Clique sur le bouton <strong>Copier le texte</strong>. Les coordonnées de Thomas sont déjà dedans.</p>
+        <div class="prompt-box">
+          <pre id="prompt-facture">Tu es mon assistant de facturation. Je suis professeur d'arabe coranique en ligne et je dois faire ma facture du mois pour Thomas Saint-Louis.
+
+ÉTAPE 1 — Pose-moi les questions
+Ne crée pas encore la facture. Commence par me lister les informations dont tu as besoin, en phrases simples. Puis, juste en dessous, écris : "Tu peux me répondre en copiant ce modèle et en le remplissant :" et donne-moi ce modèle dans un bloc de texte à copier :
+
+Nom et prénom :
+Adresse complète (rue, ville, code postal) :
+Pays :
+Numéro d'entreprise (ICE au Maroc, NIF en Algérie, matricule fiscal en Tunisie — si tu n'en as pas, écris "aucun") :
+
+Numéro de facture (1 pour ta première facture, puis 2, 3, 4… sans sauter de numéro) :
+Date de la facture (le jour où tu la fais) :
+Mois facturé :
+
+Montant de la facture en € :
+
+Moyen de paiement : Virement / PayPal / Wise / Autre
+Informations de paiement (IBAN ou RIB + BIC, ou email PayPal, ou email Wise…) :
+
+ÉTAPE 2 — Vérifie
+Quand j'ai répondu, vérifie qu'il ne manque rien. S'il manque une information obligatoire, redemande-la. N'invente jamais une information.
+
+ÉTAPE 3 — Crée la facture en PDF
+Une seule page A4, en français, mise en page sobre, sans logo, sans couleurs vives, sans emoji.
+- Titre : "FACTURE N° [numéro]" et la date.
+- En haut à gauche : mes informations. Si j'ai écrit "aucun" pour le numéro d'entreprise, n'affiche pas cette ligne.
+- En haut à droite, le client (ne pas modifier) :
+  Thomas Saint-Louis — À la lumière du Coran
+  246 avenue de Fronton, 31200 Toulouse, France
+  SIRET : 847 639 077 00035
+- Intitulé : "Cours d'arabe coranique en ligne — [mois facturé]".
+- Tableau simple : Désignation | Montant. Une seule ligne, puis "Total à payer". Reprends exactement le montant que je t'ai donné, sans rien calculer ni modifier. En euros, avec 2 décimales (ex : 156,00 €).
+- Encadré "Moyen de paiement" avec uniquement le moyen que j'ai choisi et ses informations.
+- Mentions en bas de page :
+  "TVA non applicable — prestataire établi hors de France."
+  "Paiement sous 15 jours à réception de la facture."
+  "Le prestataire est seul responsable de ses déclarations et de ses obligations fiscales et sociales dans son pays de résidence."
+
+Donne-moi ensuite le lien de téléchargement du PDF, nommé : Facture_[mon nom]_[mois facturé].pdf</pre>
+          <button class="btn-copy" type="button" data-copy="prompt-facture">Copier le texte</button>
+        </div>
+      </div></li>
+      <li><span class="num">2</span><div>
+        <p class="howto-title">Vérifie et télécharge le PDF</p>
+        <p>Relis ton nom, le total et ton moyen de paiement. Si tout est juste, télécharge le PDF. Le mois suivant, tu recommences avec le numéro de facture suivant (1, puis 2, puis 3…).</p>
+      </div></li>
+      <li><span class="num">3</span><div>
+        <p class="howto-title">Envoie ta facture à Thomas</p>
+        <p>Ensuite, quand tout est bon, envoie ta facture à Thomas.</p>
+      </div></li>
+    </ol>
+    <button class="check" type="button" data-step="8" aria-pressed="false">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path class="tick" d="m8 12 3 3 5-6"/></svg>
+      Étape 8 terminée
+    </button>
+  </div>
+</section>
+
+<section class="step" id="etape-9">
+  <div class="wrap">
+    <div class="step-head">
+      <span class="step-tag">Étape 9</span>
+      <h3>Le tuto en images, pas à pas :</h3>
+    </div>
+    <p class="step-intro">Tout ce qu'il faut cliquer, dans l'ordre, avec une image à chaque fois. Les ronds rouges numérotés sur les images montrent où cliquer. Tu fais ça une seule fois, sur un ordinateur. Compte 15 minutes. Si tu bloques, appelle Robin : on le fait ensemble.</p>
+    <ol class="howto">
+      <li><span class="num">1</span><div>
+        <p class="howto-title">Ouvre ton espace</p>
+        <p>Ouvre WhatsApp et clique sur le lien que Robin t'a envoyé (il commence par <strong>https://espace-prof</strong>). Une page s'ouvre avec « Espace prof » et ton prénom en haut. Sous le bandeau vert, il y a 3 boutons : Accueil, Mes élèves, Réglages. Clique sur <strong>Réglages</strong> (1). Pour tout ce qui suit, utilise un ordinateur, pas un téléphone.</p><figure><img src="img/01-espace-accueil.jpg" alt="" loading="lazy"><figcaption>Le bouton Réglages est entouré en rouge.</figcaption></figure>
+      </div></li>
+    </ol>
+    <h4 class="part">Partie A · Brancher ton agenda Google (points 2 à 10)</h4>
+    <ol class="howto">
+      <li><span class="num">2</span><div>
+        <p class="howto-title">Copie l'adresse du robot</p>
+        <p>Tu es dans Réglages, partie « 1. Ton agenda Google ». Il y a une case avec une adresse qui finit par <strong>gserviceaccount.com</strong> : c'est l'adresse du robot. Clique sur le bouton <strong>COPIER</strong> (1), juste à droite de la case. Un petit message « Copié » apparaît en bas de l'écran. Ne ferme pas cette page : tu y reviens au point 10.</p><figure><img src="img/02-espace-reglages-agenda.jpg" alt="" loading="lazy"><figcaption>(1) Copier. Les repères (2) et (3) servent au point 10.</figcaption></figure>
+      </div></li>
+      <li><span class="num">3</span><div>
+        <p class="howto-title">Ouvre Google Agenda</p>
+        <p>Ouvre un nouvel onglet dans ton navigateur et va sur <strong>calendar.google.com</strong>. Si Google te demande de te connecter, connecte-toi avec le compte Google que tu utilises pour tes cours (le même que Calendly). À gauche de l'écran, sous le titre « Mes agendas », il y a une liste. Ton agenda, c'est la ligne avec ton nom (1).</p><figure><img src="img/04-gcal-accueil.jpg" alt="" loading="lazy"><figcaption>La ligne avec ton nom, sous « Mes agendas ».</figcaption></figure>
+      </div></li>
+      <li><span class="num">4</span><div>
+        <p class="howto-title">Fais apparaître les trois petits points</p>
+        <p>Pose la souris sur la ligne avec ton nom, sans cliquer. Trois petits points verticaux apparaissent à droite de la ligne. Clique sur ces trois points (1).</p><figure><img src="img/05-gcal-hover-points.jpg" alt="" loading="lazy"><figcaption>Les trois points n'apparaissent que quand la souris est sur la ligne.</figcaption></figure>
+      </div></li>
+      <li><span class="num">5</span><div>
+        <p class="howto-title">Ouvre « Paramètres et partage »</p>
+        <p>Un menu s'ouvre. Clique sur <strong>Paramètres et partage</strong> (1). Une nouvelle page s'ouvre, avec beaucoup de réglages : c'est normal.</p><figure><img src="img/06-gcal-menu-parametres.jpg" alt="" loading="lazy"></figure>
+      </div></li>
+      <li><span class="num">6</span><div>
+        <p class="howto-title">Trouve « Partagé avec » et clique sur « Ajouter »</p>
+        <p>Descends dans la page avec la molette jusqu'au titre <strong>Partagé avec</strong>. Dessous, il y a ton nom, puis un bouton <strong>+ Ajouter des personnes et des groupes</strong> (1). Clique sur ce bouton. Une petite fenêtre s'ouvre au milieu de l'écran : « Partager avec des personnes en particulier ». C'est dans cette fenêtre que tu vas coller l'adresse du robot (point 7). Quand tu auras fini le point 9, une ligne de plus apparaîtra ici avec le robot, comme la ligne (2) sur l'image.</p><figure><img src="img/07-gcal-partage-section.jpg" alt="" loading="lazy"><figcaption>(1) le bouton à cliquer. (2) ce que tu dois obtenir à la fin du point 9.</figcaption></figure>
+      </div></li>
+      <li><span class="num">7</span><div>
+        <p class="howto-title">Colle l'adresse du robot</p>
+        <p>Dans la petite fenêtre, clique dans la case blanche « Ajouter une adresse e-mail ou un nom » (1). Colle l'adresse du robot : fais un <strong>clic droit</strong> dans la case et choisis <strong>Coller</strong> (ou appuie en même temps sur les touches <strong>Ctrl</strong> et <strong>V</strong> sur Windows, <strong>Cmd</strong> et <strong>V</strong> sur Mac). L'adresse <strong>os-business-claude@seraphic-vertex-468714-g0.iam.gserviceaccount.com</strong> doit s'afficher dans la case. Si une proposition apparaît dessous avec la même adresse, clique dessus. Si rien ne se colle, retourne au point 2, reclique sur COPIER, et reviens ici.</p><figure><img src="img/08-gcal-dialog-email.jpg" alt="" loading="lazy"></figure>
+      </div></li>
+      <li><span class="num">8</span><div>
+        <p class="howto-title">Choisis l'autorisation « Apporter des modifications aux événements »</p>
+        <p>Sous la case, il y a une liste <strong>Autorisations</strong>. Clique dessus : elle se déroule. Clique sur <strong>Apporter des modifications aux événements</strong> (1). Attention : pas « Voir les détails » ni « Afficher uniquement les informations de disponibilité », sinon le robot ne pourra pas créer les cours de tes élèves dans ton agenda.</p><figure><img src="img/09-gcal-dialog-autorisations.jpg" alt="" loading="lazy"></figure>
+      </div></li>
+      <li><span class="num">9</span><div>
+        <p class="howto-title">Clique sur « Envoyer »</p>
+        <p>Clique sur le bouton bleu <strong>Envoyer</strong> (1), en bas à droite de la petite fenêtre. Si Google pose une question, réponds <strong>Envoyer</strong> (ou OK). La fenêtre se ferme. Dans la liste « Partagé avec », une nouvelle ligne est apparue avec l'adresse du robot et « Apporter des modifications aux événements » : c'est la ligne (2) de l'image du point 6. Google Agenda, c'est fini.</p><figure><img src="img/08b-gcal-dialog-envoyer.jpg" alt="" loading="lazy"></figure>
+      </div></li>
+      <li><span class="num">10</span><div>
+        <p class="howto-title">Dis-le à ton espace : « Enregistrer et vérifier »</p>
+        <p>Reviens sur l'onglet de ton espace (ou rouvre le lien de Robin) et clique sur <strong>Réglages</strong>. Sous l'adresse du robot, il y a la case <strong>Ton adresse Google (celle de cet agenda)</strong>, repère (2) sur l'image du point 2. Clique dedans et écris ton adresse Google, celle avec laquelle tu viens de te connecter à Google Agenda, par exemple prenom@gmail.com. Puis clique sur le bouton vert <strong>Enregistrer et vérifier</strong>, repère (3). Attends quelques secondes : le petit rond au-dessus devient <strong>vert</strong> avec « Agenda lu le… ». S'il reste orange, lis le message écrit à côté : soit l'adresse est mal écrite, soit le partage du point 9 n'a pas été fait. Corrige, puis reclique sur Enregistrer et vérifier.</p>
+      </div></li>
+    </ol>
+    <h4 class="part">Partie B · Brancher Fathom (points 11 à 19)</h4>
+    <ol class="howto">
+      <li><span class="num">11</span><div>
+        <p class="howto-title">Ouvre les réglages Fathom et vérifie les 2 premiers boutons</p>
+        <p>Ouvre un nouvel onglet, va sur <strong>fathom.video</strong> et connecte-toi (bouton « Continue with Google », avec le même compte Google). En haut à droite, clique sur <strong>Settings</strong> (la roue dentée). Tout en haut de la page, tu lis « Auto-record … and auto-share … with attendees ». Le premier bouton (1) doit afficher <strong>All meetings</strong> : sinon clique dessus et choisis All meetings. Le deuxième bouton (2) doit afficher <strong>Summary &amp; recording</strong> : sinon clique dessus et choisis-le.</p><figure><img src="img/10-fathom-settings-haut.jpg" alt="" loading="lazy"></figure>
+      </div></li>
+      <li><span class="num">12</span><div>
+        <p class="howto-title">Trouve le modèle de résumé</p>
+        <p>Descends dans la page jusqu'à la ligne <strong>Default Meeting Summary Template</strong> (elle est sous le titre « Premium features »). À droite de cette ligne, il y a un bouton qui affiche un nom de modèle (par exemple « Sales »). Clique sur ce bouton (1).</p><figure><img src="img/16-fathom-template.jpg" alt="" loading="lazy"></figure>
+      </div></li>
+      <li><span class="num">13</span><div>
+        <p class="howto-title">Choisis « Enhanced »</p>
+        <p>Une liste s'ouvre. Clique sur <strong>Enhanced</strong> (1), tout en haut de la liste. Le bouton affiche maintenant « Enhanced ». Les résumés de tes cours seront pédagogiques, pas commerciaux.</p><figure><img src="img/17-fathom-template-liste.jpg" alt="" loading="lazy"></figure>
+      </div></li>
+      <li><span class="num">14</span><div>
+        <p class="howto-title">Descends jusqu'à « API Access » et clique sur « Add »</p>
+        <p>Descends encore dans la page jusqu'au titre <strong>API ACCESS</strong>. À droite de « API Access », clique sur le bouton <strong>Add</strong> (1).</p><figure><img src="img/18-fathom-api-access.jpg" alt="" loading="lazy"></figure>
+      </div></li>
+      <li><span class="num">15</span><div>
+        <p class="howto-title">Clique sur « Generate Api Key » et valide</p>
+        <p>Une page « Add API Connection » s'ouvre avec deux cartes. Clique sur la carte de gauche, <strong>Generate Api Key</strong> (1). Fathom te demande un nom : écris <strong>espace prof</strong>, puis clique sur le bouton pour valider (il s'appelle Generate ou Create). Fathom affiche alors une page avec ta clé, une longue suite de lettres et de chiffres : tu n'as rien à copier, et ne la donne à personne. Si tu vois sur cette page un lien bleu <strong>Add Webhook</strong>, saute le point 16 et va directement au point 17.</p><figure><img src="img/19-fathom-add-api.jpg" alt="" loading="lazy"></figure>
+      </div></li>
+      <li><span class="num">16</span><div>
+        <p class="howto-title">Ouvre « Manage »</p>
+        <p>Si tu n'es pas sur la page de ta clé : reviens dans Settings (la roue dentée) et descends jusqu'à <strong>API ACCESS</strong>. Ta clé « espace prof » apparaît maintenant sous API Access. À droite de son nom, clique sur <strong>Manage</strong> (1).</p><figure><img src="img/18b-fathom-manage.jpg" alt="" loading="lazy"></figure>
+      </div></li>
+      <li><span class="num">17</span><div>
+        <p class="howto-title">Clique sur « Add Webhook »</p>
+        <p>Tu es sur la page de ta clé. Clique sur le lien bleu <strong>Add Webhook</strong> (1). Un formulaire « Setup Webhook » s'ouvre sur le côté de l'écran. Laisse-le ouvert et passe au point 18 pour aller chercher l'adresse à coller dedans.</p><figure><img src="img/14-fathom-manage.jpg" alt="" loading="lazy"><figcaption>Les cases grisées sont tes codes secrets : ne les partage avec personne.</figcaption></figure>
+      </div></li>
+      <li><span class="num">18</span><div>
+        <p class="howto-title">Copie ton adresse Fathom dans ton espace</p>
+        <p>Reviens sur l'onglet de ton espace › <strong>Réglages</strong>, partie « 2. Fathom ». Il y a une case avec une adresse qui commence par <strong>https://espace-prof</strong> : c'est ton adresse Fathom personnelle. Clique sur <strong>COPIER</strong> (1), juste à droite. « Copié » apparaît.</p><figure><img src="img/03-espace-reglages-fathom.jpg" alt="" loading="lazy"></figure>
+      </div></li>
+      <li><span class="num">19</span><div>
+        <p class="howto-title">Remplis le formulaire et clique sur « Create Webhook »</p>
+        <p>Reviens sur l'onglet Fathom, dans le formulaire « Setup Webhook ». Clique dans la case <strong>Destination URL</strong> (1) et colle l'adresse : clic droit › Coller, ou Ctrl+V sur Windows, Cmd+V sur Mac. Elle doit commencer par https://espace-prof. Regarde les interrupteurs : <strong>My Recordings</strong> (2), <strong>Summary</strong> (3) et <strong>Transcript</strong> doivent être bleus avec une coche. S'ils sont gris, clique dessus pour les passer en bleu. Le Transcript est indispensable : c'est lui qui sert à écrire, après chaque cours, la note « Reprendre ici » de ton élève (où vous en êtes, devoirs donnés, difficultés). Enfin, clique sur le bouton bleu <strong>Create Webhook</strong> (4), tout en bas. Le formulaire se ferme et ton adresse apparaît dans la liste « Webhooks ». Fathom, c'est fini.</p><p class="help-note">À savoir : Fathom enverra dans ton espace <strong>tous</strong> tes enregistrements, pas seulement les cours. Si tu enregistres un autre appel (réunion, rendez-vous), il apparaîtra dans « À faire : quel élève ? » : clique simplement sur « Ce n'est pas un cours ».</p><figure><img src="img/15-fathom-setup-webhook.jpg" alt="" loading="lazy"></figure>
+      </div></li>
+    </ol>
+    <h4 class="part">Partie C · Mettre un cours dans ton agenda (points 20 et 21)</h4>
+    <ol class="howto">
+      <li><span class="num">20</span><div>
+        <p class="howto-title">Clique sur « Créer » puis « Événement »</p>
+        <p>Dans Google Agenda, en haut à gauche, clique sur le bouton <strong>Créer</strong> (1). Un menu s'ouvre : clique sur <strong>Événement</strong> (2). Une fenêtre s'ouvre au milieu de l'écran. Pour un cours réservé par l'élève via Calendly, tu n'as rien à faire : il arrive tout seul dans ton agenda, déjà bien rempli.</p><figure><img src="img/20-gcal-creer-menu.jpg" alt="" loading="lazy"></figure>
+      </div></li>
+      <li><span class="num">21</span><div>
+        <p class="howto-title">La règle unique : l'élève en invité + Google Meet, puis « Enregistrer »</p>
+        <p>Dans la fenêtre : clique sur « Ajouter un titre » (1) et écris le nom du cours, par exemple <strong>Cours d'arabe — Myriam</strong>. Clique sur la date et l'heure pour mettre celles du cours. Clique sur <strong>Ajouter des invités</strong> (2), tape l'email de ton élève et appuie sur la touche <strong>Entrée</strong> : l'email apparaît sous la case. Tu trouves cet email dans ton espace › Mes élèves › clique sur l'élève › Infos. Clique sur <strong>Ajouter une visioconférence Google Meet</strong> (3) : une ligne « Participer avec Google Meet » apparaît avec un lien meet.google.com. Clique sur le bouton bleu <strong>Enregistrer</strong> (4). Google demande « Envoyer l'invitation ? » : clique sur <strong>Envoyer</strong>. L'élève reçoit le lien du cours par email. Pour un cours fixe chaque semaine : avant d'enregistrer, clique sur « Autres options », puis sur le menu « Ne se répète pas », choisis <strong>Toutes les semaines</strong>, puis clique sur Enregistrer.</p><figure><img src="img/22-gcal-event-draft.jpg" alt="" loading="lazy"><figcaption>Sans l'élève en invité ou sans Google Meet, le cours n'est pas reconnu.</figcaption></figure>
+      </div></li>
+    </ol>
+    <h4 class="part">Partie D · Le test (point 22)</h4>
+    <ol class="howto">
+      <li><span class="num">22</span><div>
+        <p class="howto-title">Un cours test de 5 minutes, et c'est terminé</p>
+        <p>Crée un cours comme au point 21, qui commence dans 5 minutes, et invite un ami ou une autre adresse email à toi. À l'heure, ouvre l'événement dans ton agenda et clique sur <strong>Participer avec Google Meet</strong>. Une fenêtre demande si « Fathom Notetaker » peut entrer : clique sur <strong>Admettre</strong>. Parle pendant 5 minutes sans t'arrêter (lis un texte, n'importe quoi : Fathom ne traite pas les réunions trop courtes). Clique sur le téléphone rouge pour raccrocher. Attends 10 minutes, puis ouvre ton espace › Accueil : le cours est marqué <strong>Fait</strong>, avec « Rediffusion », la note « Reprendre ici » et « Résumé automatique du cours ». Va dans Réglages : les deux ronds sont verts. C'est terminé pour toujours : à partir de maintenant, tes cours remontent tout seuls, tu n'as plus rien à brancher.</p>
+      </div></li>
+    </ol>
+    <button class="check" type="button" data-step="9" aria-pressed="false">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path class="tick" d="m8 12 3 3 5-6"/></svg>
+      Étape 9 terminée
+    </button>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">À la lumière du Coran · Espace professeurs</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<script>
+  const KEY = 'onboarding-prof-v2-steps';
+  const TOTAL = 9;
+  let done = [];
+  try { done = JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) {}
+  // Le recrutement validé compte comme une étape acquise : la barre ne démarre jamais à zéro
+  const BASE = 1;
+  try { if (localStorage.getItem(KEY + '-v4') !== '1') { done = []; localStorage.setItem(KEY, '[]'); localStorage.setItem(KEY + '-v4', '1'); } } catch (e) {}
+
+  function render() {
+    document.querySelectorAll('button.check').forEach(b => {
+      b.setAttribute('aria-pressed', done.includes(b.dataset.step) ? 'true' : 'false');
+    });
+    document.querySelectorAll('.plan li[data-step]').forEach(li => {
+      li.classList.toggle('done', done.includes(li.dataset.step));
+    });
+    const n = done.length;
+    document.getElementById('fill').style.width = ((n + BASE) / (TOTAL + BASE) * 100) + '%';
+    const next = ['1', '2', '3', '4', '5', '6', '7', '8', '9'].find(s => !done.includes(s));
+    document.getElementById('progress-label').textContent =
+      n === TOTAL ? 'Tout est prêt. Les 9 étapes sont terminées.'
+      : n === 0 ? 'Recrutement validé. Tu es à l\'étape 1 sur ' + TOTAL + '.'
+                : n + (n > 1 ? ' étapes terminées' : ' étape terminée') + '. Tu es à l\'étape ' + next + ' sur ' + TOTAL + '.';
+  }
+
+  document.querySelectorAll('button.check').forEach(b => {
+    b.addEventListener('click', () => {
+      const s = b.dataset.step;
+      const checking = !done.includes(s);
+      done = checking ? [...done, s] : done.filter(x => x !== s);
+      try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {}
+      render();
+      if (checking) celebrate(b, done.length === TOTAL);
+    });
+  });
+
+  function celebrate(btn, all) {
+    if (typeof confetti !== 'function') return;
+    const r = btn.getBoundingClientRect();
+    const origin = { x: (r.left + r.width / 2) / innerWidth, y: (r.top + r.height / 2) / innerHeight };
+    const colors = ['#C9A97E', '#E4CFA8', '#FAF6EE', '#1B4A47'];
+    confetti({ particleCount: 120, spread: 80, startVelocity: 42, origin, colors });
+    if (all) {
+      // Toutes les étapes terminées : grande pluie depuis les deux côtés
+      const end = Date.now() + 1500;
+      (function frame() {
+        confetti({ particleCount: 6, angle: 60, spread: 60, origin: { x: 0, y: .7 }, colors });
+        confetti({ particleCount: 6, angle: 120, spread: 60, origin: { x: 1, y: .7 }, colors });
+        if (Date.now() < end) requestAnimationFrame(frame);
+      })();
+    }
+  }
+
+  document.querySelectorAll('button.btn-copy').forEach(b => {
+    b.addEventListener('click', async () => {
+      const text = document.getElementById(b.dataset.copy).textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (e) {
+        // Repli pour les navigateurs sans accès au presse-papiers
+        const ta = document.createElement('textarea');
+        ta.value = text; document.body.appendChild(ta); ta.select();
+        document.execCommand('copy'); ta.remove();
+      }
+      const label = b.dataset.label || (b.dataset.label = b.textContent);
+      b.textContent = b.dataset.done || 'Copié ✓ Colle-le dans ChatGPT';
+      setTimeout(() => { b.textContent = label; }, 2500);
+    });
+  });
+
+  // Étape 4 : accès à la plateforme de cours (Systeme.io) via l'API de l'Espace prof
+  const accesForm = document.getElementById('acces-form');
+  if (accesForm) {
+    const msg = document.getElementById('acces-msg');
+    const submit = document.getElementById('acces-submit');
+    accesForm.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      const prenom = accesForm.prenom.value.trim();
+      const email = accesForm.email.value.trim().toLowerCase();
+      const email2 = accesForm.email2.value.trim().toLowerCase();
+      msg.className = 'form-msg';
+      if (!prenom) { msg.textContent = 'Écris ton prénom.'; msg.classList.add('is-error'); accesForm.prenom.focus(); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { msg.textContent = "L'adresse email n'est pas valide."; msg.classList.add('is-error'); accesForm.email.focus(); return; }
+      if (email !== email2) { msg.textContent = 'Les 2 adresses ne sont pas identiques. Vérifie la faute de frappe.'; msg.classList.add('is-error'); accesForm.email2.focus(); return; }
+      submit.disabled = true; submit.textContent = 'Création de ton accès…';
+      msg.textContent = '';
+      try {
+        const r = await fetch('https://espace-prof-rho.vercel.app/api/acces-plateforme', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prenom, email, email2 }),
+        });
+        const d = await r.json().catch(() => ({}));
+        if (!r.ok || !d.ok) throw new Error(d.error || 'Problème technique. Écris à Robin.');
+        msg.textContent = d.message; msg.classList.add('is-ok');
+        submit.textContent = 'Accès envoyé';
+        const check = document.querySelector('button.check[data-step="4"]');
+        if (check && !done.includes('2')) check.click();
+      } catch (e) {
+        msg.textContent = e.message; msg.classList.add('is-error');
+        submit.disabled = false; submit.textContent = 'Recevoir mon accès';
+      }
+    });
+  }
+
+  render();
+</script>
+</body>
+</html>
