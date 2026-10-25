@@ -356,19 +356,24 @@
     <div class="step-head">
       <span class="step-tag">Étape 5</span>
       <h3>Crée ton calendrier de réservation de cours :</h3>
-      <p class="step-intro">Crée ton Calendly avec le compte Google de l'agenda où tu mets tes cours, et choisis <strong>Google Meet</strong> comme lieu. Les cours fixes (par exemple tous les mercredis à 18 h), tu les mets directement dans ton Google Agenda, avec l'élève en invité et un lien Meet.</p>
+      <p class="step-intro">Calendly, c'est le calendrier où tes élèves réservent eux-mêmes leurs cours flexibles, dans les créneaux libres de ton agenda. Crée ton compte avec le compte Google de ton agenda, et choisis <strong>Google Meet</strong> comme lieu. Tes cours fixes, eux, s'ajoutent tout seuls dans ton agenda.</p>
     </div>
     <div class="video">
-      <iframe src="https://www.tella.tv/video/vid_cmvdwyygw006902l80ldm6g60/embed" title="Créer et configurer son compte Calendly" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      <video controls preload="metadata" playsinline poster="video/calendly.jpg?v=1">
+        <source src="video/calendly.mp4?v=1" type="video/mp4">
+      </video>
     </div>
     <div class="center cta-under-video"><a class="btn-wa btn-big" href="https://calendly.com/signup" target="_blank" rel="noopener">Créer mon compte Calendly</a></div>
     <div class="substep">
-      <p class="substep-title">Étape 5.1. Copie le lien de ton événement et envoie-le à Robin sur WhatsApp.</p>
-      <a class="btn-wa" href="https://wa.me/33780505214?text=Voici%20le%20lien%20de%20mon%20calendrier%20Calendly%20%3A%20COLLER%20LE%20LIEN" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.03c-.24.68-1.42 1.3-1.95 1.35-.5.05-.97.23-3.27-.68-2.77-1.09-4.52-3.92-4.66-4.1-.13-.18-1.11-1.48-1.11-2.82 0-1.34.7-2 .95-2.27.25-.27.54-.34.72-.34h.52c.17 0 .39-.06.61.47.24.56.79 1.92.86 2.06.07.14.11.3.02.48-.09.18-.14.3-.27.46-.14.16-.29.35-.41.47-.14.14-.28.29-.12.56.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.2 1.36.27.14.43.11.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.23.61-.14.25.09 1.59.75 1.86.89.27.14.45.2.52.32.07.11.07.66-.17 1.32Z"/></svg>
-        Envoyer mon lien sur WhatsApp
-      </a>
-      <p class="substep-note">Le message s'écrit tout seul. Remplace « COLLER LE LIEN » par le lien de ton événement Calendly, puis envoie.</p>
+      <p class="substep-title">Étape 5.1. Copie le lien de ton événement Calendly, colle-le ci-dessous, puis clique sur « Envoyer à Robin ou Thomas ».</p>
+      <form class="acces" id="calendly-form" novalidate>
+        <label for="cal-prenom">Ton prénom</label>
+        <input id="cal-prenom" name="prenom" type="text" autocomplete="given-name" required>
+        <label for="cal-lien">Le lien de ton événement Calendly</label>
+        <input id="cal-lien" name="lien" type="url" inputmode="url" autocapitalize="off" autocomplete="off" placeholder="https://calendly.com/ton-nom/cours" required>
+        <button class="btn-copy" id="cal-submit" type="submit">Envoyer à Robin ou Thomas</button>
+        <p class="form-msg" id="cal-msg" aria-live="polite"></p>
+      </form>
     </div>
     <button class="check" type="button" data-step="5" aria-pressed="false">
       <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path class="tick" d="m8 12 3 3 5-6"/></svg>
@@ -757,10 +762,45 @@ Donne-moi ensuite le lien de téléchargement du PDF, nommé : Facture_[mon nom]
         msg.textContent = d.message; msg.classList.add('is-ok');
         submit.textContent = 'Accès envoyé';
         const check = document.querySelector('button.check[data-step="4"]');
-        if (check && !done.includes('2')) check.click();
+        if (check && !done.includes('4')) check.click();
       } catch (e) {
         msg.textContent = e.message; msg.classList.add('is-error');
         submit.disabled = false; submit.textContent = 'Recevoir mon accès';
+      }
+    });
+  }
+
+  // Étape 5.1 : lien Calendly du prof → canal Slack #attribution-prof-eleves, via l'API de l'Espace prof
+  const calForm = document.getElementById('calendly-form');
+  if (calForm) {
+    const msg = document.getElementById('cal-msg');
+    const submit = document.getElementById('cal-submit');
+    const prenom4 = document.getElementById('acces-prenom');
+    calForm.prenom.addEventListener('focus', () => { if (!calForm.prenom.value && prenom4 && prenom4.value) calForm.prenom.value = prenom4.value.trim(); });
+    calForm.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      const prenom = calForm.prenom.value.trim();
+      let lien = calForm.lien.value.trim();
+      msg.className = 'form-msg';
+      if (!prenom) { msg.textContent = 'Écris ton prénom.'; msg.classList.add('is-error'); calForm.prenom.focus(); return; }
+      if (/^(www\.)?calendly\.com\//i.test(lien)) lien = 'https://' + lien.replace(/^www\./i, '');
+      if (!/^https:\/\/(www\.)?calendly\.com\/\S+$/i.test(lien)) { msg.textContent = "Ce n'est pas un lien Calendly : il commence par https://calendly.com/"; msg.classList.add('is-error'); calForm.lien.focus(); return; }
+      submit.disabled = true; submit.textContent = 'Envoi…';
+      msg.textContent = '';
+      try {
+        const r = await fetch('https://espace-prof-rho.vercel.app/api/acces-plateforme', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'calendly', prenom, lien }),
+        });
+        const d = await r.json().catch(() => ({}));
+        if (!r.ok || !d.ok) throw new Error(d.error || 'Problème technique. Envoie ton lien à Robin sur WhatsApp.');
+        msg.textContent = "C'est envoyé à Robin et Thomas. Merci !"; msg.classList.add('is-ok');
+        submit.textContent = 'Lien envoyé ✓';
+        const check = document.querySelector('button.check[data-step="5"]');
+        if (check && !done.includes('5')) check.click();
+      } catch (e) {
+        msg.textContent = e.message; msg.classList.add('is-error');
+        submit.disabled = false; submit.textContent = 'Envoyer à Robin ou Thomas';
       }
     });
   }
