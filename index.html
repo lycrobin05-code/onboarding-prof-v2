@@ -98,6 +98,8 @@
     border: 1px solid rgba(201, 169, 126, .2); background: #000;
   }
   .video iframe, .video video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  /* Vidéos faites par l'outil (16:9) : sans ça, bandes noires en haut et en bas */
+  .video.v169 { aspect-ratio: 16 / 9; }
   .video-note { font-size: 13px; color: rgba(250, 246, 238, .5); text-align: center; margin-top: 10px; }
 
   .substep {
@@ -213,11 +215,11 @@
     <p class="kicker">Préparation professeur</p>
     <h1>Bienvenue dans l'équipe</h1>
     <p>Cette page te prépare à donner tes premiers cours. Suis les étapes dans l'ordre et coche chacune quand elle est terminée.</p>
-    <p class="order-warn"><strong>Attention :</strong> toutes les étapes doivent être faites <strong>dans l'ordre</strong>, de la 1 à la 9. Faites dans le désordre, elles ne fonctionnent pas (chaque étape a besoin de la précédente). Et toutes les étapes se font <strong>sur un ordinateur</strong>, pas sur le téléphone.</p>
+    <p class="order-warn"><strong>Attention :</strong> toutes les étapes doivent être faites <strong>dans l'ordre</strong>, de la 1 à la 8. Faites dans le désordre, elles ne fonctionnent pas (chaque étape a besoin de la précédente). Et toutes les étapes se font <strong>sur un ordinateur</strong>, pas sur le téléphone.</p>
     <p class="help-wa">Une question, tu bloques quelque part, tu n'arrives pas à faire quelque chose ? Écris à Robin sur WhatsApp : <a class="link" href="https://wa.me/33780505214?text=Salam%20Robin%2C%20je%20bloque%20sur%20la%20page%20de%20pr%C3%A9paration%20%C3%A0%20l%27%C3%A9tape%20" target="_blank" rel="noopener">+33 7 80 50 52 14</a>. Il te répond vite.</p>
     <div class="progress">
       <div class="progress-bar"><div class="progress-fill" id="fill"></div></div>
-      <p class="progress-label" id="progress-label">Recrutement validé. Tu es à l'étape 1 sur 9.</p>
+      <p class="progress-label" id="progress-label">Recrutement validé. Tu es à l'étape 1 sur 8.</p>
     </div>
   </div>
 </section>
@@ -229,7 +231,7 @@
     <ol>
       <li class="done"><span class="pre"><span class="num">✓</span><span class="label">Recrutement validé<span class="sub">Tu fais partie de l'équipe de professeurs</span></span></span></li>
       <li data-step="1"><a href="#etape-1"><span class="num">1</span><span class="label">Étape 1<span class="sub">Organise ton quotidien avec Google Agenda</span></span></a></li>
-      <li data-step="2"><a href="#etape-2"><span class="num">2</span><span class="label">Étape 2<span class="sub">Bloque tes horaires de prière dans ton Google Agenda</span></span></a></li>
+      <li data-step="2"><a href="#etape-2"><span class="num">2</span><span class="label">Étape 2<span class="sub">Mets tes horaires de prière dans ton Google Agenda</span></span></a></li>
       <li data-step="3"><a href="#etape-3"><span class="num">3</span><span class="label">Étape 3<span class="sub">Fais tes cours en visio avec Google Meet</span></span></a></li>
       <li data-step="4"><a href="#etape-4"><span class="num">4</span><span class="label">Étape 4<span class="sub">Accède à la plateforme de cours (le programme que suivent tes élèves)</span></span></a></li>
       <li data-step="5"><a href="#etape-5"><span class="num">5</span><span class="label">Étape 5<span class="sub">Crée ton calendrier de réservation de cours</span></span></a></li>
@@ -270,7 +272,7 @@
       <span class="step-tag">Étape 2</span>
       <h3>Comment mettre ses horaires de prière dans son Google Agenda :</h3>
     </div>
-    <div class="video">
+    <div class="video v169">
       <video controls preload="metadata" playsinline poster="video/horaires-priere.jpg?v=2">
         <source src="video/horaires-priere.mp4?v=2" type="video/mp4">
       </video>
@@ -387,7 +389,7 @@
       <span class="step-tag">Étape 6</span>
       <h3>Crée ton compte Fathom (enregistrement des cours) :</h3>
     </div>
-    <div class="video">
+    <div class="video v169">
       <video controls preload="metadata" playsinline poster="video/fathom.jpg?v=1">
         <source src="video/fathom.mp4?v=1" type="video/mp4">
       </video>
@@ -447,7 +449,7 @@
       <span class="step-tag">Étape 7</span>
       <h3>Ouvre ton Espace prof (suivi de tes élèves) :</h3>
     </div>
-    <div class="video">
+    <div class="video v169">
       <video controls preload="metadata" playsinline poster="video/espace-prof.jpg?v=3">
         <source src="video/espace-prof.mp4?v=3" type="video/mp4">
       </video>
@@ -459,6 +461,7 @@
     </div>
     <div class="substep">
       <p class="substep-title">Étape 7.2. Dans ton Espace prof, onglet Réglages, fais les branchements comme dans la vidéo.</p>
+      <p class="substep-note">Tu as déjà partagé ton agenda avec le robot à l'étape 2, pour tes prières ? C'est le même robot : saute ce passage de la vidéo et passe directement à la case « Ton adresse Google ».</p>
     </div>
     <div class="substep">
       <p class="substep-title">Pas d'e-mail après 10 minutes, même dans les Spams ? Écris à Robin.</p>
