@@ -429,24 +429,24 @@
     </div>
     <div class="substep">
       <p class="substep-title">Étape 8.1. Reçois le lien de ton Espace prof par e-mail.</p>
-      <p>Clique sur le bouton, puis tape 2 fois l'adresse e-mail que tu as donnée à l'institut. Ton lien arrive tout de suite par e-mail, de thomas.workspace2@gmail.com, avec le sujet « Ton Espace prof ». Ouvre-le sur ton ordinateur, puis mets la page en favori : Ctrl + D, et dans « Dossier », choisis « Barre de favoris » (comme dans la vidéo).</p>
+      <p>Clique sur le bouton, puis tape l'adresse e-mail que tu as donnée à l'institut. Vérifie bien qu'elle est juste : une seule lettre fausse, et le lien n'arrive pas. Ton lien arrive tout de suite par e-mail, de thomas.workspace2@gmail.com, avec le sujet « Ton Espace prof ». Ouvre-le sur ton ordinateur, puis mets la page en favori : Ctrl + D, et dans « Dossier », choisis « Barre de favoris » (comme dans la vidéo).</p>
       <div class="center" style="margin-top:16px"><a class="btn-outline" href="https://espace-prof-rho.vercel.app/lien" target="_blank" rel="noopener">Recevoir mon lien</a></div>
     </div>
     <div class="substep">
-      <p class="substep-title">Étape 8.2. Dans ton Espace prof, onglet Réglages, fais les branchements comme dans la vidéo.</p>
-      <p class="substep-note">Tu as déjà partagé ton agenda avec le robot à l'étape 4, pour tes prières ? C'est le même robot : saute ce passage de la vidéo et passe directement à la case « Ton adresse Google ».</p>
-    </div>
-    <div class="substep">
-      <p class="substep-title">Étape 8.3. Vérifie tes branchements.</p>
+      <p class="substep-title">Étape 8.2. Vérifie tes branchements.</p>
       <p>Dans ton Espace prof, onglet Réglages, clique sur « Vérifier mes branchements ». Tout doit être vert.</p>
       <p class="substep-note">Pour que Fathom passe au vert, fais un Meet test de 5 minutes en parlant, avec Fathom, comme à l'étape 7 : cette fois, l'enregistrement arrive dans ton Espace prof. Attends 10 minutes, puis reclique sur « Vérifier mes branchements ».</p>
     </div>
     <div class="substep">
-      <p class="substep-title">Pas d'e-mail après 5 minutes, même dans les Spams ? Écris à Thomas.</p>
-      <a class="btn-wa" href="https://wa.me/33685950890?text=Salam%20Thomas%2C%20je%20n%27ai%20pas%20re%C3%A7u%20mon%20lien%20Espace%20prof." target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.03c-.24.68-1.42 1.3-1.95 1.35-.5.05-.97.23-3.27-.68-2.77-1.09-4.52-3.92-4.66-4.1-.13-.18-1.11-1.48-1.11-2.82 0-1.34.7-2 .95-2.27.25-.27.54-.34.72-.34h.52c.17 0 .39-.06.61.47.24.56.79 1.92.86 2.06.07.14.11.3.02.48-.09.18-.14.3-.27.46-.14.16-.29.35-.41.47-.14.14-.28.29-.12.56.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.2 1.36.27.14.43.11.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.23.61-.14.25.09 1.59.75 1.86.89.27.14.45.2.52.32.07.11.07.66-.17 1.32Z"/></svg>
-        Écrire à Thomas sur WhatsApp
-      </a>
+      <p class="substep-title">Pas d'e-mail après 5 minutes, même dans les Spams ? Préviens Thomas ici.</p>
+      <form class="acces" id="lien-form" novalidate>
+        <label for="lm-prenom">Ton prénom</label>
+        <input id="lm-prenom" name="prenom" type="text" autocomplete="given-name" required>
+        <label for="lm-email">L'adresse e-mail que tu as tapée</label>
+        <input id="lm-email" name="email" type="email" autocomplete="email" required>
+        <button class="btn-copy" id="lm-submit" type="submit">Prévenir Thomas</button>
+        <p class="form-msg" id="lm-msg" aria-live="polite"></p>
+      </form>
     </div>
     <button class="check" type="button" data-step="8" aria-pressed="false">
       <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path class="tick" d="m8 12 3 3 5-6"/></svg>
@@ -704,6 +704,39 @@ Donne-moi ensuite le lien de téléchargement du PDF, nommé : Facture_[mon nom]
         submit.textContent = 'Thomas est prévenu ✓';
         const check = document.querySelector('button.check[data-step="7"]');
         if (check && !done.includes('7')) check.click();
+      } catch (e) {
+        msg.textContent = e.message; msg.classList.add('is-error');
+        submit.disabled = false; submit.textContent = 'Prévenir Thomas';
+      }
+    });
+  }
+
+  // Étape 8 : « Pas d'e-mail après 5 minutes » → canal Slack #attribution-prof-eleves, via l'API de l'Espace prof
+  const lmForm = document.getElementById('lien-form');
+  if (lmForm) {
+    const msg = document.getElementById('lm-msg');
+    const submit = document.getElementById('lm-submit');
+    lmForm.prenom.addEventListener('focus', () => {
+      const p = [document.getElementById('fa-prenom'), document.getElementById('cal-prenom'), document.getElementById('acces-prenom')].map(x => x && x.value.trim()).find(Boolean);
+      if (!lmForm.prenom.value && p) lmForm.prenom.value = p;
+    });
+    lmForm.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      const prenom = lmForm.prenom.value.trim(), email = lmForm.email.value.trim();
+      msg.className = 'form-msg';
+      if (!prenom) { msg.textContent = 'Écris ton prénom.'; msg.classList.add('is-error'); lmForm.prenom.focus(); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { msg.textContent = "Écris l'adresse e-mail que tu as tapée."; msg.classList.add('is-error'); lmForm.email.focus(); return; }
+      submit.disabled = true; submit.textContent = 'Envoi…';
+      msg.textContent = '';
+      try {
+        const r = await fetch('https://espace-prof-rho.vercel.app/api/acces-plateforme', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'lien-manquant', prenom, email }),
+        });
+        const d = await r.json().catch(() => ({}));
+        if (!r.ok || !d.ok) throw new Error(d.error || 'Problème technique. Réessaie dans quelques minutes.');
+        msg.textContent = d.message || "C'est envoyé à Thomas : il te renvoie ton lien."; msg.classList.add('is-ok');
+        submit.textContent = 'Thomas est prévenu ✓';
       } catch (e) {
         msg.textContent = e.message; msg.classList.add('is-error');
         submit.disabled = false; submit.textContent = 'Prévenir Thomas';
