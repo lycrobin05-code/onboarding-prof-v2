@@ -231,8 +231,8 @@
     <p class="order-note">Dans l'ordre, une étape après l'autre, sur un ordinateur. Pas de saut d'étape.</p>
     <ol>
       <li class="done"><span class="pre"><span class="num">✓</span><span class="label">Étape 1<span class="sub">Recrutement validé : tu fais partie de l'équipe de professeurs</span></span></span></li>
-      <li data-step="2"><a href="#etape-2"><span class="num">2</span><span class="label">Étape 2<span class="sub">Accède à la plateforme de cours (le programme que suivent tes élèves)</span></span></a></li>
-      <li data-step="3"><a href="#etape-3"><span class="num">3</span><span class="label">Étape 3<span class="sub">Organise ton quotidien avec Google Agenda</span></span></a></li>
+      <li data-step="2"><a href="#etape-2"><span class="num">2</span><span class="label">Étape 2<span class="sub">Organise ton quotidien avec Google Agenda</span></span></a></li>
+      <li data-step="3"><a href="#etape-3"><span class="num">3</span><span class="label">Étape 3<span class="sub">Accède à la plateforme de cours (le programme que suivent tes élèves)</span></span></a></li>
       <li data-step="4"><a href="#etape-4"><span class="num">4</span><span class="label">Étape 4<span class="sub">Mets tes horaires de prière dans ton Google Agenda</span></span></a></li>
       <li data-step="5"><a href="#etape-5"><span class="num">5</span><span class="label">Étape 5<span class="sub">Fais tes cours en visio avec Google Meet</span></span></a></li>
       <li data-step="6"><a href="#etape-6"><span class="num">6</span><span class="label">Étape 6<span class="sub">Crée ton calendrier de réservation de cours</span></span></a></li>
@@ -247,16 +247,38 @@
   <div class="wrap">
     <div class="step-head">
       <span class="step-tag">Étape 2</span>
+      <h3>Comment organiser ton quotidien avec Google Agenda :</h3>
+    </div>
+    <div class="video">
+      <video controls preload="metadata" playsinline poster="video/google-agenda.jpg?v=4">
+        <source src="video/google-agenda.mp4?v=4" type="video/mp4">
+      </video>
+    </div>
+    <div class="substep">
+      <p class="substep-title">Adresse de Thomas à ajouter à ton agenda</p>
+      <p class="mail-copy" id="mail-thomas">thomas.workspace2@gmail.com</p>
+      <button class="btn-copy btn-mail" type="button" data-copy="mail-thomas" data-done="Adresse copiée ✓">Copier l'adresse</button>
+      <p class="help-note">Autorisation à choisir : « Voir les détails des événements ». Ce n'est pas l'adresse WhatsApp de Thomas : c'est son adresse Google, pour ton agenda. Fais le partage depuis un ordinateur.</p>
+    </div>
+    <button class="check" type="button" data-step="2" aria-pressed="false">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path class="tick" d="m8 12 3 3 5-6"/></svg>
+      Étape 2 terminée
+    </button>
+  </div>
+</section>
+
+<section class="step" id="etape-3">
+  <div class="wrap">
+    <div class="step-head">
+      <span class="step-tag">Étape 3</span>
       <h3>Accède à la plateforme de cours « À la lumière du Coran » :</h3>
     </div>
-    <p class="step-intro">C'est la plateforme où tes élèves suivent le programme complet (vidéos, modules, exercices). Tu dois la connaître pour accompagner chaque élève au bon endroit du programme. Entre ton adresse email : ton accès est créé automatiquement.</p>
+    <p class="step-intro">C'est la plateforme où tes élèves suivent le programme complet (vidéos, modules, exercices). Tu dois la connaître pour accompagner chaque élève au bon endroit du programme. Entre ton adresse Gmail, la même que celle de ton agenda Google (étape 2) : ton accès est créé automatiquement. Vérifie bien qu'elle est juste : une seule lettre fausse, et l'accès n'arrive pas.</p>
     <form class="acces" id="acces-form" novalidate>
       <label for="acces-prenom">Ton prénom</label>
       <input id="acces-prenom" name="prenom" type="text" autocomplete="given-name" required>
-      <label for="acces-email">Ton adresse email</label>
+      <label for="acces-email">Ton adresse Gmail (la même que ton agenda Google, étape 2)</label>
       <input id="acces-email" name="email" type="email" autocomplete="email" inputmode="email" autocapitalize="off" required>
-      <label for="acces-email2">Confirme ton adresse email (pour être sûr qu'il n'y a pas de faute de frappe)</label>
-      <input id="acces-email2" name="email2" type="email" inputmode="email" autocapitalize="off" required>
       <button class="btn-copy" id="acces-submit" type="submit">Recevoir mon accès</button>
       <p class="form-msg" id="acces-msg" aria-live="polite"></p>
     </form>
@@ -280,30 +302,6 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.03c-.24.68-1.42 1.3-1.95 1.35-.5.05-.97.23-3.27-.68-2.77-1.09-4.52-3.92-4.66-4.1-.13-.18-1.11-1.48-1.11-2.82 0-1.34.7-2 .95-2.27.25-.27.54-.34.72-.34h.52c.17 0 .39-.06.61.47.24.56.79 1.92.86 2.06.07.14.11.3.02.48-.09.18-.14.3-.27.46-.14.16-.29.35-.41.47-.14.14-.28.29-.12.56.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.2 1.36.27.14.43.11.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.23.61-.14.25.09 1.59.75 1.86.89.27.14.45.2.52.32.07.11.07.66-.17 1.32Z"/></svg>
         Écrire à Thomas sur WhatsApp
       </a>
-    </div>
-    <button class="check" type="button" data-step="2" aria-pressed="false">
-      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path class="tick" d="m8 12 3 3 5-6"/></svg>
-      Étape 2 terminée
-    </button>
-  </div>
-</section>
-
-<section class="step" id="etape-3">
-  <div class="wrap">
-    <div class="step-head">
-      <span class="step-tag">Étape 3</span>
-      <h3>Comment organiser ton quotidien avec Google Agenda :</h3>
-    </div>
-    <div class="video">
-      <video controls preload="metadata" playsinline poster="video/google-agenda.jpg?v=4">
-        <source src="video/google-agenda.mp4?v=4" type="video/mp4">
-      </video>
-    </div>
-    <div class="substep">
-      <p class="substep-title">Adresse de Thomas à ajouter à ton agenda</p>
-      <p class="mail-copy" id="mail-thomas">thomas.workspace2@gmail.com</p>
-      <button class="btn-copy btn-mail" type="button" data-copy="mail-thomas" data-done="Adresse copiée ✓">Copier l'adresse</button>
-      <p class="help-note">Autorisation à choisir : « Voir les détails des événements ». Ce n'est pas l'adresse WhatsApp de Thomas : c'est son adresse Google, pour ton agenda. Fais le partage depuis un ordinateur.</p>
     </div>
     <button class="check" type="button" data-step="3" aria-pressed="false">
       <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path class="tick" d="m8 12 3 3 5-6"/></svg>
@@ -551,6 +549,8 @@ Donne-moi ensuite le lien de téléchargement du PDF, nommé : Facture_[mon nom]
   try { if (localStorage.getItem(KEY + '-v5') !== '1') { done = []; localStorage.setItem(KEY, '[]'); localStorage.setItem(KEY + '-v5', '1'); } } catch (e) {}
   // 27/10 : la plateforme de cours passe en étape 2 (Google Agenda 3, prières 4, Meet 5) : on repart de zéro une fois
   try { if (localStorage.getItem(KEY + '-v6') !== '1') { done = []; localStorage.setItem(KEY, '[]'); localStorage.setItem(KEY + '-v6', '1'); } } catch (e) {}
+  // 01/11 : Google Agenda passe en étape 2 et la plateforme de cours en étape 3 (l'accès plateforme demande l'adresse Gmail) : on repart de zéro une fois
+  try { if (localStorage.getItem(KEY + '-v7') !== '1') { done = []; localStorage.setItem(KEY, '[]'); localStorage.setItem(KEY + '-v7', '1'); } } catch (e) {}
 
   function render() {
     document.querySelectorAll('button.check').forEach(b => {
@@ -613,7 +613,7 @@ Donne-moi ensuite le lien de téléchargement du PDF, nommé : Facture_[mon nom]
     });
   });
 
-  // Étape 2 : accès à la plateforme de cours (Systeme.io) via l'API de l'Espace prof
+  // Étape 3 : accès à la plateforme de cours (Systeme.io) via l'API de l'Espace prof
   const accesForm = document.getElementById('acces-form');
   if (accesForm) {
     const msg = document.getElementById('acces-msg');
@@ -622,24 +622,22 @@ Donne-moi ensuite le lien de téléchargement du PDF, nommé : Facture_[mon nom]
       ev.preventDefault();
       const prenom = accesForm.prenom.value.trim();
       const email = accesForm.email.value.trim().toLowerCase();
-      const email2 = accesForm.email2.value.trim().toLowerCase();
       msg.className = 'form-msg';
       if (!prenom) { msg.textContent = 'Écris ton prénom.'; msg.classList.add('is-error'); accesForm.prenom.focus(); return; }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { msg.textContent = "L'adresse email n'est pas valide."; msg.classList.add('is-error'); accesForm.email.focus(); return; }
-      if (email !== email2) { msg.textContent = 'Les 2 adresses ne sont pas identiques. Vérifie la faute de frappe.'; msg.classList.add('is-error'); accesForm.email2.focus(); return; }
       submit.disabled = true; submit.textContent = 'Création de ton accès…';
       msg.textContent = '';
       try {
         const r = await fetch('https://espace-prof-rho.vercel.app/api/acces-plateforme', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ prenom, email, email2 }),
+          body: JSON.stringify({ prenom, email }),
         });
         const d = await r.json().catch(() => ({}));
-        if (!r.ok || !d.ok) throw new Error(d.error || 'Problème technique. Écris à Robin.');
+        if (!r.ok || !d.ok) throw new Error(d.error || 'Problème technique. Écris à Thomas.');
         msg.textContent = d.message; msg.classList.add('is-ok');
         submit.textContent = 'Accès envoyé';
-        const check = document.querySelector('button.check[data-step="2"]');
-        if (check && !done.includes('2')) check.click();
+        const check = document.querySelector('button.check[data-step="3"]');
+        if (check && !done.includes('3')) check.click();
       } catch (e) {
         msg.textContent = e.message; msg.classList.add('is-error');
         submit.disabled = false; submit.textContent = 'Recevoir mon accès';
